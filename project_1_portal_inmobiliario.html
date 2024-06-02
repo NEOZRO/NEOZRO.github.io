@@ -1,0 +1,187 @@
+<!DOCTYPE HTML>
+<!--
+	Massively by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+<head>
+	<title>PROJECT 1</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="assets/css/main.css" />
+	<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+</head>
+<body class="is-preload">
+
+<!-- Wrapper -->
+<div id="wrapper">
+
+	<!-- Header -->
+	<header id="header">
+		<a href="index.html" class="logo">Brian Lavin</a>
+	</header>
+
+	<!-- Nav -->
+	<nav id="nav">
+		<ul class="links">
+			<li><a href="index.html">Projects</a></li>
+			<li><a href="experience.html">Experience</a></li>
+			<li><a href="education.html">Education</a></li>
+
+		</ul>
+		<ul class="icons">
+			<li><a href="https://www.linkedin.com/in/brian-lavin/" class="icon brands fa-linkedin"><span class="label">Instagram</span></a></li>
+			<li><a href="https://github.com/NEOZRO" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+		</ul>
+	</nav>
+
+	<!-- Main -->
+	<div id="main">
+
+		<!-- Post -->
+		<section class="post">
+			<header class="major">
+				<h1>Web scraping</h1><br><h3>Portal Inmobiliario</h3>
+			</header>
+
+			<ul class="actions">
+				<li><a href="https://github.com/NEOZRO" class="button primary">Github repo</a></li>
+			</ul>
+
+			<!-- Text stuff -->
+
+			<p>
+				¿Te ha pasado que mientras navegas por  <a href="https://www.portalinmobiliario.com/">PortalInmobiliario.com</a> encuentras un sector que te interesa,
+				pero luego tienes que revisar una por una cada casa o proyecto para anotar y calcular las métricas
+				que te importan? ¡Esa rutina tediosa es cosa del pasado! Con esta herramienta, simplemente <strong>elige
+				un sector y obtén un dataframe</strong> con toda la información que necesitas. ¡Así de fácil!</p>
+			<!--									<span class="image"><img src="images/game_default.png" alt="" class="center"/></span>-->
+			<p class="center">
+				<img src="images/portal_inmobiliario_1.png" alt="Image Alt" width="800">
+			</p>
+
+			<p>Esta herramienta se presenta como una clase de fácil uso, requiere que se ejecute en un jupyter.
+				Podemos importarla de la siguiente forma:</p>
+
+			<pre><code>from webscrapper_portal_inmobiliario import WebScraperPortalInmobiliario</code></pre>
+
+
+			<p>Inicializamos la clase con la variable que nos interesan dentro de las cuales tenemos las siguientes opciones:</p>
+
+			<h4>Tipo de operacion:</h4>
+			<div class="row">
+				<div class="col-6 col-12-small">
+
+					<ul>
+						<li>Venta</li>
+						<li>Arriendo</li>
+					</ul>
+				</div>
+			</div>
+
+			<h4>Tipo de inmueble:</h4>
+			<div class="row">
+				<div class="col-6 col-12-small">
+
+					<ul>
+						<li>casa</li>
+						<li>departamento</li>
+					</ul>
+				</div>
+			</div>
+
+			<pre><code>WSPI = WebScraperPortalInmobiliario(tipo_operacion="venta",
+                                    tipo_inmueble="casa",
+                                    save_data=True,
+                                    theme="default")
+</code></pre>
+
+
+			<p class="center">
+				<img src="images/portal_inmobiliario_2.png" alt="Image Alt" width="900" >
+			</p>
+
+
+			<p>Elegimos utilizando la selección poligonal:</p>
+
+			<p class="center">
+				<img src="images/portal_inmobiliario_3.png" alt="Image Alt" width="900" >
+			</p>
+
+			<p>El único inconveniente es que el portal implementa medidas contra los webscrappers,
+				como asignar aleatoriamente páginas con menos información o banear temporalmente la IP
+				si se realizan demasiadas solicitudes. Para evitar estos problemas, nuestra herramienta
+				incluye un periodo entre solicitudes bastante relajado, lo que ayuda a no saturar los servidores y
+				garantiza una obtención de información amigable.</p>
+
+			<p class="center">
+				<img src="images/portal_inmobiliario_4.png" alt="Image Alt" width="900" >
+			</p>
+			<p class="center">
+				<img src="images/portal_inmobiliario_5.png" alt="Image Alt" width="900" >
+			</p>
+
+			<p>Los resultados se almacenan en la clase como <strong>df_results</strong>, permitiéndote realizar una infinidad
+				de cálculos y obtener insights valiosos para tomar decisiones de inversión más informadas.
+				Como proyecto futuro, planeo desarrollar una funcionalidad que calcule la mejor propiedad
+				del sector utilizando métricas de tasa de capitalización, comparando los valores de arriendo y
+				venta. ¡Así podrás identificar la opción más rentable con facilidad!</p>
+
+			<p class="center">
+				<img src="images/portal_inmobiliario_6.png" alt="Image Alt" width="900" >
+			</p>
+
+			<p>Puedes encontrar todo perfectamente documentado en mi Github.</p>
+
+			<ul class="actions">
+				<li><a href="https://github.com/NEOZRO" class="button primary">Github repo</a></li>
+			</ul>
+
+
+		</section>
+
+	</div>
+
+	<!-- Footer -->
+	<footer id="footer">
+		<section class="split contact">
+			<section class="alt">
+				<h3>Location</h3>
+				<p>Santiago, Chile<br />
+					Available for hybrid work from Chile<br />
+					Avaliable for remote work worldwide</p>
+			</section>
+
+		</section>
+		<section class="split contact">
+			<section>
+				<h3>Phone</h3><p>(569) 6507-4348
+			</p>
+			</section>
+			<section>
+				<h3>Email</h3>
+				<p>brian.lavin.r@gmail.com</p>
+			</section>
+
+		</section>
+	</footer>
+
+	<!-- Copyright -->
+	<div id="copyright">
+		<ul><li>&copy; Brian Lavin</li>
+	</div>
+
+</div>
+
+<!-- Scripts -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/jquery.scrollex.min.js"></script>
+<script src="assets/js/jquery.scrolly.min.js"></script>
+<script src="assets/js/browser.min.js"></script>
+<script src="assets/js/breakpoints.min.js"></script>
+<script src="assets/js/util.js"></script>
+<script src="assets/js/main.js"></script>
+
+</body>
+</html>

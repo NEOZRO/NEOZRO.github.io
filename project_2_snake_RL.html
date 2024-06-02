@@ -1,0 +1,321 @@
+<!DOCTYPE HTML>
+<!--
+	Massively by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>PROJECT 2</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+				<header id="header">
+					<a href="index.html" class="logo">Brian Lavin</a>
+				</header>
+
+			<!-- Nav -->
+				<nav id="nav">
+					<ul class="links">
+						<li><a href="index.html">Projects</a></li>
+						<li><a href="experience.html">Experience</a></li>
+						<li><a href="education.html">Education</a></li>
+
+					</ul>
+					<ul class="icons">
+						<li><a href="https://www.linkedin.com/in/brian-lavin/" class="icon brands fa-linkedin"><span class="label">Instagram</span></a></li>
+						<li><a href="https://github.com/NEOZRO" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+					</ul>
+				</nav>
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- Post -->
+							<section class="post">
+								<header class="major">
+									<h1>Snake Game</h1><br><h3>using reinforcement learning</h3>
+								</header>
+
+								<ul class="actions">
+									<li><a href="https://github.com/NEOZRO" class="button primary">Github repo</a></li>
+								</ul>
+
+								<!-- Text stuff -->
+
+									<p>El juego clásico de "Snake" ofrece un escenario perfecto para explorar los
+										conceptos fundamentales del aprendizaje reforzado. En este juego simple
+										pero adictivo, los jugadores controlan una serpiente que crece cada vez que consume
+										un objeto, pero pierden si la serpiente choca consigo misma o con los bordes del tablero.
+										Esta dinámica elemental presenta desafíos que son fácilmente traducibles al ámbito del
+										aprendizaje reforzado. Los temas se abordarán de forma ligera ya que se entiende que el
+										lector tiene los conocimientos básicos de esto.</p>
+<!--									<span class="image"><img src="images/game_default.png" alt="" class="center"/></span>-->
+								<p class="center">
+									<img src="images/game_default.png" alt="Image Alt" width="500" height="500">
+								</p>
+
+								<hr />
+
+								<p>Comenzaremos por definir qué son los <strong>agentes</strong> en el contexto del aprendizaje reforzado.
+									Los agentes son entidades que toman decisiones basadas en predicciones realizadas en el
+									pasado inmediato y reciben recompensas según los resultados de esas decisiones.
+									En el caso de nuestro estudio, el agente actuará como el 'jugador' que aprenderá
+									a jugar al juego de Snake.
+									<br>Para entrenar a este agente, utilizamos la red neuronal conocida como Deep Q-Learning,
+									la cual es una herramienta poderosa en el ámbito del aprendizaje reforzado. Esta red se fundamenta
+									en las propiedades de Markov, donde cada <strong>estado</strong> (es decir, la información
+									que el agente recibe sobre su entorno) no está influenciado por las decisiones tomadas en el pasado.
+									Por lo tanto, cada estado contiene toda la información necesaria para tomar una nueva decisión. Un ejemplo
+									práctico que no cumple con estas propiedades sería un juego de póker, donde cada jugada está condicionada
+									por el comportamiento previo de los oponentes, convirtiéndolo en un juego donde las decisiones pasadas influyen
+									en el curso del juego.
+								</p>
+									<hr />
+
+								<!-- Lists -->
+									<h2>Desiciones</h2>
+								<p>red deberá retornar una de las siguientes decisiones</p>
+									<div class="row">
+										<div class="col-6 col-12-small">
+
+
+											<ul>
+												<li>Seguir con su direccion actual</li>
+												<li>Girar a la izquierda</li>
+												<li>Girar a la derecha</li>
+											</ul>
+
+										</div>
+
+									</div>
+
+								<p class="center">
+									<img src="images/MULTIPLES DIRECTIONS MOVEMENT_v2.png" alt="Image Alt" width="400" height="400">
+								</p>
+
+								<h2>Recompensas</h2>
+								<p>El Sistema otorgará diferentes <strong>recompensas</strong> al agente de acuerdo a sus decisiones:</p>
+									<div class="col-6 col-12-small">
+
+
+										<ul>
+											<li>Comer fruta (+10 pts)</li>
+											<li>Chocar contra una pared (-10 pts)</li>
+											<li>Chocar consigo mismo (-10 pts)</li>
+											<li>Esperar demasiado tiempo entre frutas (-10 pts)</li>
+											<li>Ninguno de los escenarios anteriores (0 pts)</li>
+										</ul>
+
+									</div>
+
+								<div class="row">
+									<div class="col-6 col-12-small">
+
+										<p class="center">
+											<img src="images/reward_fruit.png" alt="Image Alt" width="300" height="300">
+										</p>
+										<p class="center">
+											<img src="images/reward_itself_hit.png" alt="Image Alt" width="300" height="300">
+										</p>
+
+
+									</div>
+
+									<div class="col-6 col-12-small">
+
+										<p class="center">
+											<img src="images/reward_wall_hit.png" alt="Image Alt" width="300" height="300">
+
+										</p>
+										<p class="center">
+											<img src="images/reward_wait_to_much.png" alt="Image Alt" width="300" height="300">
+										</p>
+
+									</div>
+
+								</div>
+
+								<p>De esta forma a lo largo de un solo juego se podrá tener un puntaje para cuantificar
+									la calidad de las jugadas/decisiones tomadas.</p>
+
+
+								<h2>Visión del agente</h2>
+
+								<p>El agente logra interpretar la escena a través de una función que recopila información
+									básica del fotograma actual del juego y retorna un vector de estado. Esta función
+									genera una guía de ubicaciones y factores que ayudan al agente a comprender su posición
+									en cada momento. Estas guías se construyen mediante vectores binarios que indican
+									la dirección (arriba, abajo, izquierda, derecha). El vector de la escena incluye información
+									sobre la dirección de la serpiente, la orientación de la comida con respecto a la cabeza
+									de la serpiente, las alertas de peligro para su propio cuerpo en los fotogramas siguientes,
+									y alertas de proximidad a las paredes.</p>
+
+
+								<p class="center">
+									<img src="images/vision_vector.png" alt="Image Alt" width="800" height="800">
+									<br>vision vector ilustration
+								</p>
+
+
+								<h2>Entrenamiento</h2>
+
+								<p>Durante la etapa inicial de parametrización, se identificó un problema recurrente
+									en el que la serpiente chocaba con su propio cuerpo con demasiada frecuencia,
+									lo que impedía superar un puntaje máximo de 50. Esto ocurría porque la serpiente
+									perseguía su comida sin considerar que su longitud corporal crecía.
+									Para abordar este problema, se propuso un sistema en el que la cola de la serpiente
+									bloquea su visión de la comida si esta se encuentra en su trayectoria.
+									Podemos visualizarlo como si la serpiente pudiera olfatear su comida,
+									pero su propio cuerpo obstaculizara este sentido. Con este pequeño ajuste,
+									se esperaba que la serpiente tenga como prioridad evitar chocar consigo misma y luego,
+									en segundo lugar, busque activamente la comida. Este cambio impulsó la obtención
+									de puntajes máximos considerablemente mejores.</p>
+
+								<p>El siguiente diagrama ilustra en resumen lo recién descrito</p>
+
+								<p class="center">
+									<img src="images/vision_blocked.png" alt="Image Alt" width="400" height="400">
+									<br>snake and vision blocked
+								</p>
+
+
+								<p>El flujo total y la secuencia de eventos pueden describirse de la siguiente manera:
+									Se inicia alimentando al agente con la información del estado del fotograma anterior.
+									El agente utiliza esta información para realizar un movimiento, y luego se transmite la decisión
+									al juego para que devuelva la recompensa asociada a esa decisión y se calcule
+									el nuevo estado resultante. Durante esta iteración del fotograma, el agente
+									también se entrena.
+									Además, se lleva a cabo un entrenamiento adicional al finalizar cada partida con un "game over",
+									utilizando una muestra de las decisiones tomadas durante esa partida.
+									Cada entrenamiento actualiza el valor de Q de la red neuronal utilizando la ecuación
+									de Bellman, Q proviene de quality que es el objetivo de la red, Tomar acciones de <strong>calidad</strong>
+								</p>
+
+								<p class="center">
+									<img src="images/diagram_flow.png" alt="Image Alt" width="800" >
+									<br>flow architecture
+								</p>
+
+								<p class="center">
+									<img src="images/bellman_equation.png" alt="Image Alt" width="800" >
+									<br>Bellman's equation
+								</p>
+
+
+
+
+								<p>Durante las etapas iniciales del entrenamiento de la serpiente, se implementa
+									un período de exploración. Para ello, se agregan movimientos aleatorios en
+									las primeras 200 partidas del juego. Este enfoque podría compararse con la
+									introducción de un viento o ruido que induce a la serpiente a tomar decisiones
+									aparentemente irracionales. El propósito de esta fase es permitir que la serpiente
+									explore diferentes áreas de su entorno y comprenda los posibles riesgos que puede
+									enfrentar en su entrenamiento futuro. Una vez superada esta fase, la serpiente
+									desarrolla una noción básica de cómo jugar, lo que acelera significativamente
+									su aprendizaje.
+								</p>
+
+								<p>La siguiente secuencia de animaciones muestran las diferentes épocas que pasó la
+									serpiente durante su entrenamiento.
+								</p>
+
+								<div class="row">
+									<div class="col-6 col-12-small">
+
+										<p class="center">
+											<img src="images/Sequence 01.gif" alt="Image Alt" width="600" height="300">
+										</p>
+										<p class="center">
+											<img src="images/Sequence 03.gif" alt="Image Alt" width="600" height="300">
+										</p>
+
+
+									</div>
+
+									<div class="col-6 col-12-small">
+
+										<p class="center">
+											<img src="images/Sequence 02.gif" alt="Image Alt" width="600" height="300">
+
+										</p>
+										<p class="center">
+											<img src="images/Sequence 04.gif" alt="Image Alt" width="600" height="300">
+										</p>
+
+									</div>
+
+								</div>
+
+
+								<p>Durante el desarrollo y ajuste de parámetros de este proyecto,
+									inevitablemente surgieron cuestionamientos filosóficos sobre las
+									similitudes entre este proceso de aprendizaje reforzado y el aprendizaje
+									humano a lo largo de la vida. Esto nos lleva a reflexionar sobre cómo
+									cometer muchos errores en las primeras etapas de la vida puede crear las
+									situaciones que nos permitirán entender y tomar las mejores decisiones en el futuro.
+
+								</p>
+
+								<p>El código completo de este proyecto, junto con su documentación pertinente,
+									está disponible en mi repositorio de Github</p>
+
+								<ul class="actions">
+									<li><a href="https://github.com/NEOZRO" class="button primary">Github repo</a></li>
+								</ul>
+
+
+							</section>
+
+					</div>
+
+				<!-- Footer -->
+				<footer id="footer">
+					<section class="split contact">
+						<section class="alt">
+							<h3>Location</h3>
+							<p>Santiago, Chile<br />
+								Available for hybrid work from Chile<br />
+								Avaliable for remote work worldwide</p>
+						</section>
+
+					</section>
+					<section class="split contact">
+						<section>
+							<h3>Phone</h3><p>(569) 6507-4348
+						</p>
+						</section>
+						<section>
+							<h3>Email</h3>
+							<p>brian.lavin.r@gmail.com</p>
+						</section>
+
+					</section>
+				</footer>
+
+				<!-- Copyright -->
+				<div id="copyright">
+					<ul><li>&copy; Brian Lavin</li>
+				</div>
+
+			</div>
+
+		<!-- Scripts -->
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/jquery.scrollex.min.js"></script>
+		<script src="assets/js/jquery.scrolly.min.js"></script>
+		<script src="assets/js/browser.min.js"></script>
+		<script src="assets/js/breakpoints.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
