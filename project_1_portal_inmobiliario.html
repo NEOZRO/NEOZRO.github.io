@@ -66,9 +66,9 @@
                 <strong>terminamos creando tablas en Excel para comparar precios</strong>, analizar posibles inversiones, y
                 todo sin estar seguros de haber encontrado la mejor oferta. Es un proceso agotador
             </p>
-            <!--									<span class="image"><img src="images/game_default.png" alt="" class="center"/></span>-->
+
             <p class="center">
-                <img src="images/portal_inmobiliario_1.png" alt="Image Alt" width="800">
+                <img src="images/portal_inmobiliario_1.png" alt="Image Alt" class="responsive-image">
             </p>
 
             <p>Por eso, decidí transformar ese caos en un reto personal y crear un software que simplifique este proceso.
@@ -92,13 +92,11 @@
 
 
             <p class="center">
-                <img src="images/project_2_images/linea_9_estaciones_v2.png" alt="Image Alt" width="400" >
+                <img src="images/project_2_images/linea_9_estaciones_v2.png" alt="Image Alt" class="responsive-image-extreme-tall" >
             </p>
             <p class="center">
-                <img src="images/project_2_images/linea_9_estaciones_v1.png" alt="Image Alt" width="700" >
+                <img src="images/project_2_images/linea_9_estaciones_v1.png" alt="Image Alt" class="responsive-image" >
             </p>
-
-
 
 
             <p>Para abordar este problema necesitamos data!. La mejor forma de obtenerla es mediante
@@ -110,7 +108,7 @@
                 portalinmobiliario no es fan de que le consulten demasiadas veces</p>
 
             <p class="center">
-                <img src="images/project_2_images/flujo_codigo.png" alt="Image Alt" width="700" >
+                <img src="images/project_2_images/flujo_codigo.png" alt="Image Alt" class="responsive-image" >
             </p>
 
             <p>El flujo es sencillo: ejecutas una celda en Jupyter para añadir un nuevo mapa a la base de datos.
@@ -131,7 +129,7 @@
 
 
             <p class="center">
-                <img src="images/project_2_images/map_anim.gif" alt="Image Alt" width="800" >
+                <img src="images/project_2_images/map_anim.gif" alt="Image Alt" class="responsive-image" >
             </p>
 
 
@@ -142,7 +140,7 @@
                 estimados a partir de los datos disponibles en otras áreas. Se entrenaran 2 modelos 1 para arriendo y otro para venta</p>
 
             <p class="center">
-                <img src="images/project_2_images/ml_model.png" alt="Image Alt" width="900" >
+                <img src="images/project_2_images/ml_model.png" alt="Image Alt" class="responsive-image" >
             </p>
 
 
@@ -167,20 +165,111 @@
             <h2>Analizando los resultados</h2>
             <br>
 
-            <p class="center">
-                <img src="images/project_2_images/data_distribution.png" alt="Image Alt" width="1000" >
+
+            <p>La siguiente imagen muestra la distribución de precios de las propiedades por estación.
+                Se observa una tendencia a la baja en los precios hacia Puente Alto. Además,
+                se identifica un foco de precios altos en las cercanías de la estación de metro Rojas Magallanes,
+                posiblemente debido a la presencia de un centro comercial, la accesibilidad a servicios
+                y la relativa seguridad de la zona.
+                Otro punto notable es que los precios de las propiedades tienden a aumentar hacia el oriente,
+                lo cual es un patrón intuitivo.
             </p>
             <br>
-            <p class="center">
-                <img src="images/project_2_images/data_distribution_full.png" alt="Image Alt" width="1000" >
-            </p>
 
+            <p class="center">
+                <img src="images/project_2_images/zonas_seleccionadas.png" alt="Image Alt" class="responsive-image" >
+            </p>
+            <br>
+
+            <p>Analizando las distribuciones del pairplot y relaciones entre los atributos , podemos obtener conclusiones interesantes:</p>
+
+            <div class="row">
+                <div class="col-md-8 offset-md-2">
+                    <ul>
+                        <li>La oferta de arriendos de casas es significativamente menor que la de departamentos, lo que sugiere una alta demanda por este tipo de propiedad.</li>
+                        <li>La mayoría de los departamentos tienen 2 dormitorios, mientras que las casas suelen tener 3.</li>
+                        <li>Existe una alta oferta de casas a la venta con más de 25 años de antigüedad.</li>
+                    </ul>
+                </div>
+            </div>
 
             <br>
             <p class="center">
-                <img src="images/project_2_images/feature_importance.png" alt="Image Alt" width="900" >
+                <img src="images/project_2_images/data_distribution_full.png" alt="Image Alt" class="responsive-image">
             </p>
 
+            <br>
+            <p>Pasando a los resultados del modelo recién entrenado, se opto por utilizar un modelo basado
+                en arboles de decisión para que la importancia de los atributos se autoajustara internamente,
+                también para ahorrarnos la posible estandarización de variables. Se uso el estado del arte de
+                XGBoosting en su modelo regresor.
+            </p>
+            <p>El <strong>modelo de valor de arriendo </strong> entrega un RMSE de 2.1 UF y un R2 de 0.88
+                sobre data de testeo no vista durante el entrenamiento.
+            </p>
+
+            <p>Si observamos la importancia de variables en arriendo, se puede ver que el tipo de inmueble será el
+                gran diferenciador. En segundo lugar, vendría el número de dormitorios.
+                Por lo tanto, para la estimación de el arriendo el numero de dormitorios y el tipo de inmueble serán
+                los grandes influenciadores para el precio. Es interesante que la antigüedad es la variable que menos
+                pondera a la hora de arrendar, mas no así en venta como se verá a continuación.
+            </p>
+
+            <br>
+            <p class="center">
+                <img src="images/project_2_images/rent_value_features.png" alt="Image Alt" class="responsive-image" >
+            </p>
+
+            <br>
+
+            <p>Para el <strong>modelo de valor de venta </strong> obtuvimos un RMSE de 497 UF y un R2 de 0.86.
+            </p>
+
+            <p>En el caso de la importancia de variables vemos un panorama totalmente distinto respecto al modelo de
+                arriendo. Lo que domina la predicción del precio de venta de una vivienda será la superficie total
+                y su ubicación.  Y la que menos ponderará será el número de dormitorios.
+            </p>
+
+            <p class="center">
+                <img src="images/project_2_images/sell_value_features.png" alt="Image Alt" class="responsive-image">
+            </p>
+
+            <p>Los hallazgos hacen sentido ya que <strong>el propósito del arriendo es la funcionalidad inmediata mientras
+                que para la venta de contabiliza el potencial de largo plazo dentro del precio</strong>. Ambos modelos podrian
+                mejorarse si se tuviera data historica de cada sector, con esta herreamienta bastaria con
+                ejecutar de forma periodica mediante por ejemplo, un crontab. Tambien podria ser interesante añadir un
+                modelo de vision que aprenda a cuantificar las imagenes de casas modernas/buenas condiciones lo cual tambien
+                podria tener relevancia a la hora de definir el precio del inmueble.
+            </p>
+
+            <br>
+
+            <p>Con los modelos entrenados se estima la renta y la venta, para una ubicación dada, y se ingresan
+                los resultados en la fórmula de CapRate. Con esos valores se rankean las mejores propiedades,
+                filtrando el precio máximo que estamos dispuestos a pagar.</p>
+            <p>Jugando con los filtros se llega a que <strong> el rango ideal de CapRate está entre 5% y 7%.</strong> Se omiten
+                los CapRate demasiado elevados ya que están asociados a casas con precarias condiciones o muy antiguas,
+                lo que implicaría una alta inversión en reparaciones y acondicionamiento para habilitar su funcionamiento.
+                También se filtra por número de habitaciones mínimas, que en este caso es de 3.</p>
+            <p>Las mejores propiedades basadas en estos filtros recién expuestos son las siguientes:
+            </p>
+            <br>
+
+            <p class="center">
+                <img src="images/project_2_images/houses_rank.png" alt="Image Alt" class="responsive-image">
+            </p>
+            <br>
+            <p>Para finalizar se podría realizar un análisis de la curva de amortización, intereses y deuda para
+                encontrar el mejor momento para vender la propiedad y obtener los mayores retornos posibles.
+                Queda pendiente para una futura ampliación de este trabajo.
+                Puedes encontrar todo perfectamente documentado en mi github.
+            </p>
+
+            <br>
+
+            <ul class="actions">
+                <li><a href="https://github.com/NEOZRO/portal_inmobiliario_web_scraper" class="button primary">Github repo</a></li>
+            </ul>
 
 
 
