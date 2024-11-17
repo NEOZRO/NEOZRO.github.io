@@ -1,9 +1,4 @@
 <!DOCTYPE HTML>
-<!--
-	Massively by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
 <html>
 	<head>
 		<title>Portfolio_Brian_Lavin</title>
@@ -11,6 +6,50 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<style>
+			/* Main intro section container - controls vertical centering */
+			#intro {
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+				min-height: 100vh;
+				/* Adjust overall padding of intro section */
+				padding: 2rem 2rem;
+			}
+
+			/* Main name title - controls the "Brian Lavin" text */
+			.name-title {
+				/* Adjust font size here */
+				font-size: 10em;
+				/* Adjust space between name and roles here */
+				margin-bottom: -0em;
+				color: #ffffff;
+				text-align: center;
+			}
+
+			/* Container for the typing animation - controls the roles text */
+			.typed-text {
+				/* Adjust font size of roles here */
+				font-size: 2em;
+				color: #ffffff;
+				min-height: 1.5em;
+				text-align: center;
+				/* Adjust space between roles and scroll button here */
+				margin-bottom: -0.5em;
+			}
+
+			/* Typing cursor styling - should match role text size */
+			.typed-cursor {
+				font-size: 1.5em;
+			}
+
+			/* Scroll button container - controls the down arrow button */
+			#intro .actions {
+				/* Adjust margin top to control space between roles and button */
+				margin-top: 0.5em;
+			}
+		</style>
 	</head>
 	<body class="is-preload">
 
@@ -19,9 +58,10 @@
 
 				<!-- Intro -->
 					<div id="intro">
-						<h1>Brian Lavin<br />
-						</h1>
-						<p>Mining Engineering | Data science | Software development</a>.</p>
+						<h1 class="name-title">Brian Lavin</h1>
+						<div class="typed-text">
+							<span id="typed"></span>
+						</div>
 						<ul class="actions">
 							<li><a href="#header" class="button icon solid solo fa-arrow-down scrolly">Continue</a></li>
 						</ul>
@@ -85,15 +125,12 @@
 									<header>
 										<h2><a href="#"></a></h2>
 									</header>
-									<p></p> <!-- TEXT DESCRIPTION -->
+									<p></p>
 									<ul class="actions special">
 									</ul>
 								</article>
 
-
-
 							</section>
-
 
 					</div>
 
@@ -106,7 +143,6 @@
 									Available for hybrid work from Chile<br />
 								Avaliable for remote work worldwide</p>
 							</section>
-
 						</section>
 						<section class="split contact">
 							<section>
@@ -117,13 +153,12 @@
 								<h3>Email</h3>
 								<p>brian.lavin.r@gmail.com</p>
 							</section>
-
 						</section>
 					</footer>
 
 				<!-- Copyright -->
 					<div id="copyright">
-						<ul><li>&copy; Brian Lavin</li>
+						<ul><li>&copy; Brian Lavin</li></ul>
 					</div>
 
 			</div>
@@ -136,6 +171,19 @@
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
+			<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+			<script>
+				var typed = new Typed('#typed', {
+					strings: ['Mining Engineer', 'Data Scientist', 'Software Developer'],
+					typeSpeed: 50,
+					backSpeed: 30,
+					backDelay: 1500,
+					startDelay: 1000,
+					loop: true,
+					showCursor: true,
+					cursorChar: '|'
+				});
+			</script>
 
 	</body>
 </html>
