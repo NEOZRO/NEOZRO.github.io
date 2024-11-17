@@ -10,11 +10,10 @@
 
 	#wrapper {
 		background-color: #212931;
-		background-image: url("../../images/overlay.png"), linear-gradient(0deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url("../../images/bg.jpg");
-		background-size: auto,								auto,														100% auto;
-		background-position: center,								center,														top center;
-		background-repeat: repeat,								no-repeat,													no-repeat;
-		background-attachment: fixed,								fixed,														fixed;
+		background-image: radial-gradient(circle, #10454d, #29241f);/*  second final color backgorund*/
+		background-size: cover;
+		background-position: center center;
+		background-repeat: no-repeat;
 	}
 
 		#wrapper.fade-in:before {
