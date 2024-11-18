@@ -1,13 +1,32 @@
+// Configuration for network animation
+const CONFIG = {
+    // Node (particle) settings
+    NODE_MIN_SIZE: 1,          // Minimum size of nodes
+    NODE_MAX_SIZE: 4,        // Maximum size of nodes
+    NODE_OPACITY: 0.8,         // Opacity of nodes (0-1)
+    
+    // Connection line settings
+    LINE_WIDTH: 0.8,           // Width of connection lines
+    LINE_MAX_DISTANCE: 300,    // Maximum distance for connecting nodes
+    LINE_OPACITY: 0.5,         // Base opacity for connection lines
+    
+    // Animation settings
+    PARTICLE_COUNT: 100,       // Number of particles
+    PARTICLE_SPEED: 0.2        // Speed of particle movement
+};
+
 class Particle {
     constructor(canvas) {
         this.canvas = canvas;
         this.x = Math.random() * canvas.width;
         this.y = Math.random() * canvas.height;
-        this.speed = 0.2;
+        this.speed = CONFIG.PARTICLE_SPEED;
         this.directionX = Math.random() * 2 - 1;
         this.directionY = (Math.random() * 0.5 - 0.25) * this.speed;
-        this.size = Math.random() * 1.5 + 1;
-        this.connectDistance = 180;
+        // Use configured node size range
+        this.size = Math.random() * (CONFIG.NODE_MAX_SIZE - CONFIG.NODE_MIN_SIZE) + CONFIG.NODE_MIN_SIZE;
+        // Use configured connection distance
+        this.connectDistance = CONFIG.LINE_MAX_DISTANCE;
     }
 
     update() {
@@ -30,7 +49,8 @@ class Particle {
     draw(ctx) {
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
+        // Use configured node opacity
+        ctx.fillStyle = `rgba(255, 255, 255, ${CONFIG.NODE_OPACITY})`;
         ctx.fill();
     }
 }
@@ -40,7 +60,8 @@ class NetworkAnimation {
         this.canvas = document.getElementById('network-animation');
         this.ctx = this.canvas.getContext('2d');
         this.particles = [];
-        this.numberOfParticles = 100; // Increased number of particles
+        // Use configured particle count
+        this.numberOfParticles = CONFIG.PARTICLE_COUNT;
         this.init();
         this.animate();
         
@@ -74,8 +95,10 @@ class NetworkAnimation {
                 if (distance < this.particles[i].connectDistance) {
                     const opacity = 1 - (distance / this.particles[i].connectDistance);
                     this.ctx.beginPath();
-                    this.ctx.strokeStyle = `rgba(255, 255, 255, ${opacity * 0.5})`; // Increased line opacity
-                    this.ctx.lineWidth = 0.6; // Slightly thicker lines
+                    // Use configured line opacity
+                    this.ctx.strokeStyle = `rgba(255, 255, 255, ${opacity * CONFIG.LINE_OPACITY})`;
+                    // Use configured line width
+                    this.ctx.lineWidth = CONFIG.LINE_WIDTH;
                     this.ctx.moveTo(this.particles[i].x, this.particles[i].y);
                     this.ctx.lineTo(this.particles[j].x, this.particles[j].y);
                     this.ctx.stroke();
