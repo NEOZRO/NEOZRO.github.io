@@ -1,18 +1,18 @@
 // Configuration for network animation
 const CONFIG = {
     // Node (particle) settings
-    NODE_MIN_SIZE: 1,          // Minimum size of nodes
-    NODE_MAX_SIZE: 4,        // Maximum size of nodes
+    NODE_MIN_SIZE: 2,          // Minimum size of nodes
+    NODE_MAX_SIZE: 6,        // Maximum size of nodes
     NODE_OPACITY: 0.8,         // Opacity of nodes (0-1)
     
     // Connection line settings
-    LINE_WIDTH: 0.8,           // Width of connection lines
+    LINE_WIDTH: 1.3,           // Width of connection lines
     LINE_MAX_DISTANCE: 300,    // Maximum distance for connecting nodes
-    LINE_OPACITY: 0.5,         // Base opacity for connection lines
+    LINE_OPACITY: 0.6,         // Base opacity for connection lines
     
     // Animation settings
-    PARTICLE_COUNT: 100,       // Number of particles
-    PARTICLE_SPEED: 0.2        // Speed of particle movement
+    PARTICLE_COUNT: 150,       // Number of particles
+    PARTICLE_SPEED: 0.6        // Speed of particle movement
 };
 
 class Particle {
